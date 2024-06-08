@@ -27,10 +27,10 @@ for FILE in $(ls ${SOURCE_DIR_1}); do
     elif [[ -d ${SOURCE_DIR_1}/${FILE} ]]; then
         echo "${FILE} to katalog"
         echo "$FILE_EXTENSION"
-        ln -sf "${FILE}" "${SOURCE_DIR_2}/${FILENAME^^}_ln${FILE_EXTENSION}"
+        ln -sf "$(readlink -f "${SOURCE_DIR_1}/${FILE}")" "${SOURCE_DIR_2}/${FILENAME^^}_ln${FILE_EXTENSION}"
     elif [[ -f ${SOURCE_DIR_1}/${FILE} ]]; then
         echo "${FILE} to plik regularny"
         echo "$FILE_EXTENSION"
-        ln -sf "${FILE}" "${SOURCE_DIR_2}/${FILENAME^^}_ln${FILE_EXTENSION}"
+        ln -sf "$(readlink -f "${SOURCE_DIR_1}/${FILE}")" "${SOURCE_DIR_2}/${FILENAME^^}_ln${FILE_EXTENSION}"
     fi
 done
